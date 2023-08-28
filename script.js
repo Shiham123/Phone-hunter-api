@@ -47,7 +47,7 @@ function displayItems(modifiedData) {
   const { phoneName, phone, id, phoneImg } = sliceData;
 
   const createItemDiv = document.createElement('div');
-  createItemDiv.classList.add = `card w-96 bg-base-100 shadow-xl`;
+  createItemDiv.classList.add(`card`, `w-96`, `bg-base-100`, `shadow-xl`);
   createItemDiv.innerHTML = `
             <figure>
               <img
