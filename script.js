@@ -2,15 +2,20 @@ const inputEl = document.getElementById('input');
 const itemEl = document.getElementById('item');
 const showMoreBtn = document.getElementById('show-more');
 
-let showMore = true;
-let dataSlice = 0;
+let moreItem = true;
+let defaultItem = 12;
+
+showMoreBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+});
 
 function getApi(searchText) {
   fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
     .then((response) => response.json())
     .then((data) => {
       let dataSlice = data.data;
-      dataSlice = dataSlice.slice(0, 12);
+      dataSlice = dataSlice.slice(0, defaultItem);
+
       itemEl.innerHTML = '';
 
       dataSlice.forEach((item) => {
@@ -30,8 +35,8 @@ function handleButton() {
   const inputValue = inputEl.value;
   getApi(inputValue);
 
-  showMore = false;
-  if (!showMore) {
+  moreItem = false;
+  if (!moreItem) {
     showMoreBtn.style.display = 'block';
   }
 }
@@ -60,9 +65,5 @@ function displayItems(modifiedData) {
   `;
   itemEl.appendChild(createItemDiv);
 }
-
-showMoreBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-});
 
 getApi();
